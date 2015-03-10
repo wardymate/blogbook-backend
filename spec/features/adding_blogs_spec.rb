@@ -21,7 +21,6 @@ feature "User adds a new link" do
     expect(blog.tags.map(&:text)).to include "personal", "ruby"
   end
 
-
   def add_blog(url, title, tags = [])
     within('#new-blog') do
       fill_in 'url', :with => url

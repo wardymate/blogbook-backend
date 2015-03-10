@@ -1,6 +1,9 @@
+require 'bcrypt'
 class User
 
-  include Datamapp::Resource
+  include DataMapper::Resource
+
+  has n, :blogs, :through => Resource
 
    property :id,               Serial
    property :name,             String
@@ -8,6 +11,8 @@ class User
    property :email,            String, :unique => true
    property :password_digest,  Text
 
-   # has n, :blogs, :through => Resource
+  def password=(password)
+    self.password_digest = BCrypt::Password.create(password)
+  end
 
 end

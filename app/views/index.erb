@@ -1,13 +1,12 @@
 <ul>
   <% @blogs.each do |blog| %>
-    <li><a href="<%= blog.url %>"><%= blog.title %></a></li>
+    <li><a href="<%= blog.url %>"><%= blog.url %></a></li>
   <% end %>
 </ul>
 
 <div id="new-blog">
   <form action="/blogs" method="post">
     Url: <input type="text" name="url">
-    Title: <input type="text" name="title">
     Tags: <input type="text" name="tags">
     <input type="submit" value="Add blog">
   </form>

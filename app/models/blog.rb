@@ -6,7 +6,6 @@ class Blog
   has n, :users, :through => Resource
 
   property :id,     Serial
-  property :title,  String
   property :url,    String
 
 end

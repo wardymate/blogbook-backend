@@ -5,26 +5,23 @@ feature "User adds a new link" do
   scenario "when browsing the homepage" do
     expect(Blog.count).to eq(0)
     visit '/'
-    add_blog("http://www.blog.com/", "My blog")
+    add_blog("http://www.blog.com/")
     expect(Blog.count).to eq(1)
     blog = Blog.first
     expect(blog.url).to eq("http://www.blog.com/")
-    expect(blog.title).to eq("My blog")
   end
 
   scenario "with a few tags" do
     visit "/"
     add_blog("http://www.blog.com/",
-                "My blog",
-                ['personal', 'ruby'])
+                ['personal'])
     blog = Blog.first
-    expect(blog.tags.map(&:text)).to include "personal", "ruby"
+    expect(blog.tags.map(&:text)).to include "personal"
   end
 
-  def add_blog(url, title, tags = [])
+  def add_blog(url, tags = [])
     within('#new-blog') do
       fill_in 'url', :with => url
-      fill_in 'title', :with => title
       fill_in 'tags', :with => tags.join(' ')
       click_button 'Add blog'
     end

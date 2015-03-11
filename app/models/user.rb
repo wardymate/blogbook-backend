@@ -6,11 +6,11 @@ class User
 
   has n, :blogs, :through => Resource
 
-   property :id,               Serial
-   property :name,             String
-   property :username,         String, :unique => true
-   property :email,            String, :unique => true
-   property :password_digest,  Text
+  property :id,               Serial
+  property :name,             String
+  property :username,         String, :unique => true
+  property :email,            String, :unique => true
+  property :password_digest,  Text
 
   attr_reader :password
   attr_accessor :password_confirmation

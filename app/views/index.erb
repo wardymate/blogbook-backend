@@ -1,13 +1,23 @@
-<ul>
+<h1>Welcome to Blogbook</h1>
+
+  <% if current_user %>
+    <div id="new-blog">
+      <form action="/blogs" method="post">
+        Url: <input type="text" name="url">
+        Tags: <input type="text" name="tags">
+        <input type="submit" value="Add blog">
+      </form>
+    </div>
+  <% end %>
+
+  <hr>
+  <br>
+  Latest Blog Updates:
+  <br><br>
+  <ul>
   <% @blogs.each do |blog| %>
     <li><a href="<%= blog.url %>"><%= blog.url %></a></li>
   <% end %>
-</ul>
+    </li>
 
-<div id="new-blog">
-  <form action="/blogs" method="post">
-    Url: <input type="text" name="url">
-    Tags: <input type="text" name="tags">
-    <input type="submit" value="Add blog">
-  </form>
-</div>
+  </ul>

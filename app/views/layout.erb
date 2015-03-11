@@ -1,6 +1,18 @@
-<body>
-  <% if current_user %>
-    Welcome, <%= current_user.email %>
-  <% end %>
-  <%= yield %>
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogbook!</title>
+
+      <link rel="stylesheet" type="text/css" href="/css/reset.css">
+      <link rel="stylesheet" type="text/css" href="/css/application.css">
+  </head>
+
+  <body>
+
+    <%= partial :header %>
+    <%= partial :flash %>
+    <%= yield %>
+
+  </body>
+
+</html>

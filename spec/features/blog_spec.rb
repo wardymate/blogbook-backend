@@ -1,18 +1,29 @@
 require 'spec_helper'
 
-describe Blog do
+require_relative 'helpers/session'
+include SessionHelpers
 
-  context 'Demonstration of datamapper working' do
-    it 'should be created and then retrieved from the db' do
-      expect(Blog.count).to eq(0)
-      Blog.create(url: 'http://www.blog.com')
-      expect(Blog.count).to eq(1)
-      blog = Blog.first
-      expect(blog.url).to eq('http://www.blog.com')
-      blog.destroy
-      expect(Blog.count).to eq(0)
-    end
+feature "User adds a blog" do
 
+  before(:each) do
+    User.create(:name => "Marissa Mayer",
+                :username => "MarissaM",
+                :email => "marissa@example.com",
+                :password => "yahoo!",
+                :password_confirmation => "yahoo!")
   end
+
+  scenario "when browsing the homepage" do
+    sign_in('MarissaM', 'yahoo!')
+    expect{add_blog("http://www.blog.com/", ['personal'])}.to change{Blog.count}.by(1)
+  end
+
+  scenario "only when signed in" do
+    visit ('/')
+    expect(page).not_to have_content("Url:")
+    sign_in('MarissaM', 'yahoo!')
+    expect(page).to have_content("Url:")
+  end
+
 
 end

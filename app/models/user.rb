@@ -4,7 +4,7 @@ class User
 
   include DataMapper::Resource
 
-  has n, :blogs, :through => Resource, :required => false
+  has n, :blogs
 
   property :id,               Serial
   property :name,             String
@@ -19,6 +19,7 @@ class User
   validates_uniqueness_of :username, :email
 
   def password=(password)
+    @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 

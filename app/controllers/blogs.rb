@@ -5,8 +5,14 @@ post '/blogs' do
   end
   Blog.create(:url => url,
               :tags => tags,
-              :user_id => session[:user_id])
+              :user_id => session[:user_id]
+              )
   redirect to('/')
+
+  # @user = User.first(id: session[:user_id])
+  # @blogs.users << @user
+  # @blog.save
+
 end
 
 get '/blogs/new' do

@@ -4,7 +4,7 @@ get '/users/new' do
 end
 
 post '/users' do
-  @user = User.new(:name => params[:name],
+  @user = User.create(:name => params[:name],
                    :username => params[:username],
                    :email => params[:email],
                    :password => params[:password],

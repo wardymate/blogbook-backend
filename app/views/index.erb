@@ -16,7 +16,7 @@
   <br><br>
   <ul>
   <% @blogs.each do |blog| %>
-    <li><a href="<%= blog.url %>"><%= blog.url %></a></li>
+    <li><a href="<%= blog.url %>" id="<%= blog.css_id %>"><%= blog.url %></a></li>
   <% end %>
     </li>
 

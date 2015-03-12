@@ -13,8 +13,16 @@ class Blog
 
   attr_reader :url
 
+  def good_url
+    if self.url.include?('http://')
+      self.url
+    else
+      ("http://") + self.url
+    end
+  end
+
   def clean_url
-    URI.parse(self.url.gsub('www.','')).host
+    URI.parse(good_url.gsub('www.','')).host
   end
 
 end

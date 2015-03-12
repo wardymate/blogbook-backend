@@ -1,3 +1,5 @@
+require 'uri'
+
 class Blog
 
   include DataMapper::Resource
@@ -11,8 +13,8 @@ class Blog
 
   attr_reader :url
 
-  def css_id
-   self.url.gsub('.','_')
+  def clean_url
+    URI.parse(self.url.gsub('www.','')).host
   end
 
 end

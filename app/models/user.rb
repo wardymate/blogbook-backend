@@ -5,6 +5,7 @@ class User
   include DataMapper::Resource
 
   has n, :blogs
+  # :through => Resource
 
   property :id,               Serial
   property :name,             String

@@ -14,9 +14,9 @@
   <br>
   Latest Blog Updates:
   <br><br>
-  <ul>
+  <ul id="blog-list">
   <% @blogs.each do |blog| %>
-    <li><a href="<%= blog.url %>" id="<%= blog.css_id %>"><%= blog.url %></a></li>
+    <li><%= blog.url %></li><a href="<%= blog.url %>" id="<%= blog.css_id %>"></a>
   <% end %>
     </li>
 

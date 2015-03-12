@@ -13,6 +13,44 @@
     <%= partial :flash %>
     <%= yield %>
 
+  <p id="blog">??</p>
+  <div id="image"></div>
+  <p>url link</p>
+  <div id="blog-link"></div>
+  <div id="blog-text"></div>
+
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script>
+    $(document).ready( function() {
+      var blogDetails;
+      blogdetails = $("#blog-list li:nth-child(1)").html();
+      $.ajax({
+        dataType: 'jsonp',
+        url: "https://api.tumblr.com/v2/blog/"+blogdetails+"/posts?api_key=5P9JPiGHHbnItpkHuxR0z591UnVqoCmX1nSvFBJVtRqQBDS1gQ",
+        success: function(info){
+          console.log(info);
+          myArray = new Array();
+          myArray = info.response.posts;
+          var text;
+          var urlText;
+          urlText = info.response.blog.url;
+          var blogNumber = 1;
+          date = myArray[blogNumber].date;
+          if (myArray[blogNumber].photos != undefined) {
+            image = myArray[blogNumber].photos[0].original_size.url;
+            $("#blog").text(date);
+            $("#image").html('<img src="'+(image)+'"/>');
+            $("#blog-link").html('<a href="'+(urlText)+'">'+(urlText)+'</a>');
+          };
+          if (myArray[blogNumber].body != undefined) {
+            var blogText = myArray[blogNumber].body;
+            $('#blog-text').html(blogText);
+          };
+        }
+      });
+
+    });
+  </script>
   </body>
 
 </html>

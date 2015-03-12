@@ -16,7 +16,9 @@
   <br><br>
   <ul id="blog-list">
   <% @blogs.each do |blog| %>
-    <li><%= blog.url %></li><a href="<%= blog.url %>" id="<%= blog.css_id %>"></a>
+
+    <li><a href="<%= blog.good_url %>" class="<%= blog.clean_url %>"><%= blog.clean_url %></a></li>
+
   <% end %>
     </li>
 
